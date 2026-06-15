@@ -8,4 +8,15 @@
         'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
+    --color-cemerald-50: oklch(96.64% 0.015 151.77);
+    --color-cemerald-100: oklch(93.53% 0.031 152.87);
+    --color-cemerald-200: oklch(87.09% 0.063 151.34);
+    --color-cemerald-300: oklch(80.80% 0.094 150.78);
+    --color-cemerald-400: oklch(74.67% 0.126 149.46);
+    --color-cemerald-500: oklch(68.85% 0.153 148.24);
+    --color-cemerald-600: oklch(58.49% 0.128 148.20);
+    --color-cemerald-700: oklch(47.68% 0.101 148.58);
+    --color-cemerald-800: oklch(36.19% 0.073 148.63);
+    --color-cemerald-900: oklch(23.73% 0.041 150.03);
+    --color-cemerald-950: oklch(19.66% 0.030 149.85);
 }

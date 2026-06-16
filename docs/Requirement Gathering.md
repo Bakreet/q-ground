@@ -2,33 +2,30 @@
 
 \---
 
-- Name: Quiz Ground
-- Type: Web Application
-- Idea: A web-based quiz platform with AI-assisted learning features
+* Name: Quiz Ground
+* Type: Web Application
+* Idea: A web-based quiz platform with AI-assisted learning features
+* Tech Stack:
 
-- Tech Stack:
+  * Php 8.3
+  * Laravel 13.7
+  * vite 8.0.0
+  * React 19.2.0
+  * Typescript 5.7.2
+  * Tailwind 4.0
+  * Shadcn
+* Developer:
 
-    - Php 8.3
-    - Laravel 13.7
-    - vite 8.0.0
-    - React 19.2.0
-    - Typescript 5.7.2
-    - Tailwind 4.0
-    - Shadcn
-
-- Developer:
-
-    - Raihan
-    - Alfath
-
+  * Raihan
+  * Alfath
 2. ### **Stakeholders**
 
 \---
 
-- Developers (Raihan, Alfath)
-- Admin
-- Users
-
+* Developers (Raihan, Alfath)
+* Super Admin
+* Admin
+* Users
 3. ### **Initial Idea**
 
 \---
@@ -43,13 +40,12 @@ i want web base application for quiz, i want this quiz app is integrate with AI.
 
 \---
 
-- Provide an interactive quiz platform
-- Enable AI-assisted learning
-- Allow users to create and share quizzes easily
-- Support engaging and competitive quiz experiences
-
+* Provide an interactive quiz platform
+* Enable AI-assisted learning
+* Allow users to create and share quizzes easily
+* Support engaging and competitive quiz experiences
 5. ### **Target Users**
+* Students
+* Casual learners
+* Quiz enthusiasts
 
-- Students
-- Casual learners
-- Quiz enthusiasts

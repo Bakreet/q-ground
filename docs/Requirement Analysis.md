@@ -12,11 +12,19 @@
 * User Management
 
   * Users can register and log in to the system
+  * Users can logout from the system
   * Users can manage their profile
   * Users can enable / disable 2FA
+  * Admin can log in to the system
+  * Admin can logout from the system
   * Admin can manage all users account except admin
   * Admin must use 2FA
+  * Super admin can log in to the system
+  * Super admin can logout from the system
+  * Super admins can manage admin and super admin accounts
+  * Super admin must use 2FA
   * Every time an admin creates, edits, or deletes a user accounts, the system logs the action in the database
+  * Every time an super admin creates, edits, or deletes admin and super admin accounts, the system logs the action in the database
 * Quiz Management
 
   * Quizzes have categories
@@ -96,9 +104,6 @@
   * System stores past attempts and results
 * Super Admin
 
-  * Super admins can manage admin and super admin accounts
-  * Super admin must use 2FA
-  * Every time an admin creates, edits, or deletes admin accounts, the system logs the action in the database
   * Super admin can see log action
   * Super admin can search log action
   * Super admin can filter search log action

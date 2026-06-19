@@ -11,28 +11,39 @@
 5. ### **Feature List**
 * User Management
 
-  * Users can register and log in to the system
-  * Users can logout from the system
-  * Users can manage their profile
-  * Users can enable / disable 2FA
-  * Admin can log in to the system
-  * Admin can logout from the system
-  * Admin can manage all users account except admin
-  * Admin must use 2FA
-  * Super admin can log in to the system
-  * Super admin can logout from the system
-  * Super admins can manage admin and super admin accounts
-  * Super admin must use 2FA
-  * Every time an admin creates, edits, or deletes a user accounts, the system logs the action in the database
-  * Every time an super admin creates, edits, or deletes admin and super admin accounts, the system logs the action in the database
+  * Users:
+
+    * Users can register and log in to the system
+    * Users can logout from the system
+    * Users can manage their profile
+    * Users can enable / disable 2FA
+  * Admins:
+
+    * Admins can log in to the system
+    * Admins can logout from the system
+    * Admins can manage all users account except admin
+    * Admins must use 2FA
+    * Every time an admin creates, edits, or deletes a user accounts, the system logs the action in the database
+  * Super Admins:
+
+    * Super admins can log in to the system
+    * Super admins can logout from the system
+    * Super admins can manage admin and super admin accounts
+    * Super admins must use 2FA
+    * Every time an super admins creates, edits, or deletes admin and super admin accounts, the system logs the action in the database
 * Quiz Management
 
   * Quizzes have categories
-  * Users can create quizzes
-  * Users can edit and delete their own quizzes
-  * Users can assign categories to quizzes they have created
-  * Admin can manage all quizzes
-  * Every time an admin creates, edits, or deletes quizzes, the system logs the action in the database
+  * Users:
+
+    * Users can create quizzes
+    * Users can edit and delete their own quizzes
+    * Users can assign categories to quizzes they have created
+    * Users can add leason materials to quizzes they have created  
+  *Admins:
+
+    * Admins can manage all quizzes
+    * Every time an admins creates, edits, or deletes quizzes, the system logs the action in the database
 * Quiz Visibility Settings
 
   * Quiz visibility can be set to:
@@ -46,6 +57,8 @@
 
     * Single answer
     * Multiple correct answers
+    * Question with image
+    * Answer with image
   * Answers are displayed using a card-based UI
   * Questions and answers can be:
 
@@ -75,12 +88,14 @@
   * Leaderboard is affected by quiz attempt settings
   * Users who preview and play their own quizzes do not generate scores on the leaderboard
   * The leaderboard shows the number of times a user leaves the website during gameplay
+  * Admins can manage all leaderboard
+  * Every time an admins creates, edits, or deletes leaderboard, the system logs the action in the database
 * AI Learning Feature
 
   * AI-powered chat learning feature available before or after quiz
-  * User that own quiz can enable or disable AI learning feature
-  * Admin can manage AI-related quiz features
-  * Every time an admin manages AI-related quiz features, the system logs the action in the database
+  * Users that own quiz can enable or disable AI learning feature
+  * Admins can manage AI-related quiz features
+  * Every time an admins manages AI-related quiz features, the system logs the action in the database
 * Social Interaction
 
   * Users can:
@@ -88,6 +103,8 @@
     * Rate quizzes they have already played
     * Comment on quizzes they have already played
   * Comments display how many times the user has played the quiz
+  * Admins can manage all rate and comment
+  * Every time an admins creates, edits, or deletes rate and comment, the system logs the action in the database
 * Quiz Discovery
 
   * Users can search for quizzes
@@ -98,15 +115,19 @@
 
     * Favorite quizzes
     * Save quizzes for later
-* User Activity Tracking
+  * Admins can manage all favorite and save quizzes
+  * Every time an admins creates, edits, or deletes favorite and save quizzes, the system logs the action in the database
+* User Activity Tracking:
 
   * Users have quiz play history
   * System stores past attempts and results
-* Super Admin
+  * Admins can manage all quiz play history
+  * Every time an admins creates, edits, or deletes quiz play history, the system logs the action in the database
+* Super Admins:
 
-  * Super admin can see log action
-  * Super admin can search log action
-  * Super admin can filter search log action
+  * Super admins can see log action
+  * Super admins can search log action
+  * Super admins can filter search log action
   * Super admins can export to PDF the last 20 log entries, selected log entries, or a combination of the last 20 and selected log entries
 6. ### **Constraints**
 

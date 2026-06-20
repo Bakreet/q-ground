@@ -1,0 +1,249 @@
+enum visibility_enum {
+	public
+	private
+	unlisted
+}
+
+
+
+enum quiz_type_enum {
+	single
+	multiple
+}
+
+
+
+enum role_enum {
+	user
+	admin
+	"super admin"
+}
+
+Table users [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	username varchar(20) [ not null, unique ]
+	name varchar(50) [ not null ]
+	email text [ not null, unique ]
+	email_verified_at timestamp [ default: null ]
+	password varchar(255) [ not null ]
+	role role_enum [ not null ]
+	two_factor_secret text [ default: null ]
+	two_factor_recovery_codes text [ default: null ]
+	two_factor_confirmed_at timestamp [ default: null ]
+	remember_token varchar(100) [ default: null ]
+	created_at timestamp [ default: null ]
+	updated_at timestamp [ default: null ]
+}
+
+Table quizzes [headercolor: #175e7a] {
+	id uuid [ pk, not null ]
+	user_id integer [ not null ]
+	name varchar(100) [ not null ]
+	description text [ default: null ]
+	average_rating numeric(4,3) [ default: null, note: 'average rating' ]
+	rating_sum integer [ default: null, note: 'Sum of all ratings. For example, if two users give a rating of 5, the total is 10' ]
+	rating_count integer [ default: null, note: 'Total users who have rated' ]
+	category varchar(255) [ default: null ]
+	visibility visibility_enum [ not null ]
+	quiz_type quiz_type_enum [ not null ]
+	randomize_question boolean [ not null, default: false ]
+	randomize_answer boolean [ not null, default: false ]
+	"leason material" text [ default: null ]
+	ai_learning_feature boolean [ not null, default: false ]
+	comment_count integer [ not null, default: 0 ]
+	created_at timestamp [ default: null ]
+	updated_at timestamp [ default: null ]
+}
+
+Table comments [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	user_id integer [ not null ]
+	quiz_id uuid [ not null ]
+	leaderboard_id integer [ not null ]
+	comment text [ not null ]
+	created_at timestamp [ default: null ]
+	updated_at timestamp [ default: null ]
+}
+
+Table leaderboards [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	user_id integer [ not null ]
+	quiz_id uuid [ not null ]
+	score integer [ not null, default: 0 ]
+	attempt_duration_seconds integer [ not null, default: 0, note: 'second' ]
+	attempt_number integer [ not null, default: 0 ]
+	leave_count smallint [ not null, default: 0 ]
+	created_at timestamp [ default: null ]
+	updated_at timestamp [ default: null ]
+}
+
+Table quiz_questions [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	quiz_id uuid [ not null ]
+	question text [ not null ]
+	question_image text [ default: null ]
+	created_at timestamp
+	updated_at timestamp
+}
+
+Table quiz_answers [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	quiz_question_id integer [ not null ]
+	answer text [ not null ]
+	answer_image text [ default: null ]
+	is_correct boolean [ not null, default: false ]
+	created_at timestamp [ default: null ]
+	updated_at timestamp [ default: null ]
+}
+
+Table quiz_user_answers [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	user_id integer [ not null ]
+	quiz_question_answer_id integer [ not null ]
+	leaderboard_id integer [ not null ]
+	answer integer
+	leave_count integer [ not null, default: 0 ]
+	attempt_duration_seconds integer [ not null, default: 0 ]
+	created_at timestamp [ default: null ]
+}
+
+Table logs [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	user_id integer [ not null ]
+	affected_id varchar(40) [ not null, note: '''max char uuid with hyphens = 36
+max char integer = 10''' ]
+	related_table varchar(255) [ not null ]
+	action varchar(255) [ not null ]
+	description text [ not null ]
+	created_at timestamp [ default: null ]
+}
+
+Table cache [headercolor: #175e7a] {
+	key varchar(255) [ pk, not null ]
+	value text [ not null ]
+	expiration bigint [ not null ]
+
+	indexes {
+		(expiration) [ name: 'cache_index_0' ]
+	}
+}
+
+Table cache_locks [headercolor: #175e7a] {
+	key varchar(255) [ pk, not null ]
+	owner varchar(255) [ not null ]
+	expiration bigint [ not null ]
+
+	indexes {
+		(expiration) [ name: 'cache_locks_index_0' ]
+	}
+}
+
+Table failed_jobs [headercolor: #175e7a] {
+	id bigint [ pk, increment, not null ]
+	uuid varchar(255) [ not null ]
+	connection varchar(255) [ not null ]
+	queue varchar(255) [ not null ]
+	payload text [ not null ]
+	exception text [ not null ]
+	failed_at timestamp [ not null, default: `current_timestamp()` ]
+
+	indexes {
+		(uuid, connection, queue, failed_at) [ name: 'failed_jobs_index_0' ]
+	}
+}
+
+Table jobs [headercolor: #175e7a] {
+	id bigint [ pk, increment, not null ]
+	queue varchar(255) [ not null ]
+	payload text [ not null ]
+	attempts smallint [ not null ]
+	reserved_at integer [ default: null ]
+	available_at integer [ not null ]
+	created_at integer [ not null ]
+
+	indexes {
+		(queue) [ name: 'jobs_index_0' ]
+	}
+}
+
+Table job_batches [headercolor: #175e7a] {
+	id varchar(255) [ pk, not null ]
+	name varchar(255) [ not null ]
+	total_jobs integer [ not null ]
+	pending_jobs integer [ not null ]
+	failed_jobs integer [ not null ]
+	failed_job_ids text [ not null ]
+	options text [ default: null ]
+	cancelled_at integer [ default: null ]
+	created_at integer [ not null ]
+	finished_at integer [ default: null ]
+}
+
+Table migrations [headercolor: #175e7a] {
+	id integer [ pk, increment, not null ]
+	migration varchar(255) [ not null ]
+	batch integer [ not null ]
+}
+
+Table password_reset_tokens [headercolor: #175e7a] {
+	email varchar(255) [ pk, not null ]
+	token varchar(255) [ not null ]
+	created_at timestamp [ default: null ]
+}
+
+Table sessions [headercolor: #175e7a] {
+	id varchar(255) [ pk, not null ]
+	user_id bigint [ default: null ]
+	ip_address varchar(45) [ default: null ]
+	user_agent text [ default: null ]
+	payload text [ not null ]
+	last_activity integer [ not null ]
+
+	indexes {
+		(user_id, last_activity) [ name: 'sessions_index_0' ]
+	}
+}
+
+Ref fk_quizzes_user_id_users {
+	quizzes.user_id > users.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_comments_user_id_users {
+	comments.user_id > users.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_comments_quiz_id_quizzes {
+	comments.quiz_id > quizzes.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_leaderboard_user_id_users {
+	leaderboards.user_id > users.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_leaderboard_quiz_id_quizzes {
+	leaderboards.quiz_id > quizzes.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_quiz_question_answers_quiz_id_quizzes {
+	quiz_questions.quiz_id > quizzes.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_quiz_user_answers_quiz_question_answer_id_quiz_question_answers {
+	quiz_user_answers.quiz_question_answer_id - quiz_questions.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_quiz_user_answers_user_id_users {
+	quiz_user_answers.user_id > users.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_quiz_user_answers_leaderboard_id_leaderboards {
+	quiz_user_answers.leaderboard_id > leaderboards.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_quiz_answers_quiz_question_id_quiz_questions {
+	quiz_answers.quiz_question_id > quiz_questions.id [ delete: cascade, update: cascade ]
+}
+
+Ref fk_logs_user_id_users {
+	logs.user_id > users.id [ delete: set null, update: cascade ]
+}
